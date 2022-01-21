@@ -1,3 +1,6 @@
+import { IUser } from './userInterface';
+
 export interface IContext {
-  AppContext: number;
+  initialState: IUser;
+  dispatch: Function;
 }

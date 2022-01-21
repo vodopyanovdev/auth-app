@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
+import { TokenProvider } from './context/TokenProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TokenProvider>
+      <App />
+    </TokenProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
