@@ -3,6 +3,7 @@ import { createContext } from 'react';
 import { getLocalStorage } from '../utils/localStorage';
 import { reducer, initialState } from './reducer';
 import { IContext } from '../interfaces/contextInterface';
+import { LOGIN } from './actionType';
 
 export const UserContext = createContext<IContext>({
   initialState,
@@ -15,11 +16,15 @@ export const TokenProvider: FC = ({ children }) => {
   useEffect(() => {
     const user = getLocalStorage('REACT_TOKEN');
     if (user) {
+      dispatch({
+        type: LOGIN,
+        payload: user,
+      });
     }
   }, []);
 
   return (
-    <UserContext.Provider value={{ initialState, dispatch }}>
+    <UserContext.Provider value={{ token, dispatch }}>
       {children}
     </UserContext.Provider>
   );

@@ -3,13 +3,15 @@ import { UserContext } from './context/TokenProvider';
 import { login } from './context/action';
 
 export const App: FC = () => {
-  const { initialState, dispatch } = useContext(UserContext);
+  const { token, dispatch } = useContext(UserContext);
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
   const nameInput = useRef(null);
   const passwordInput = useRef(null);
   const roleSelect = useRef(null);
+
+  console.log(token);
 
   const handleDispatch = () => {
     login(dispatch, {
@@ -33,7 +35,11 @@ export const App: FC = () => {
 
   return (
     <>
-      {initialState.role ? <div>Hello {initialState.name}</div> : null}
+      {token.role ? (
+        <div>
+          Hello {token.role} {token.name}
+        </div>
+      ) : null}
       <form>
         <input
           ref={nameInput}
@@ -47,7 +53,14 @@ export const App: FC = () => {
           value={password}
           onInput={handleChangePassword}
         />
-        <select ref={roleSelect} name="" id="" onChange={handleChangeRole}>
+        <select
+          value={role}
+          ref={roleSelect}
+          name=""
+          id=""
+          onChange={handleChangeRole}
+        >
+          <option>Set role</option>
           <option value="admin">Admin</option>
           <option value="user">User</option>
         </select>

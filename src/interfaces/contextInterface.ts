@@ -1,6 +1,7 @@
 import { IUser } from './userInterface';
 
 export interface IContext {
-  initialState: IUser;
+  initialState?: IUser;
+  token?: IUser;
   dispatch: Function;
 }
