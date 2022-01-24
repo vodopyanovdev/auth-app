@@ -19,7 +19,6 @@ export const App: FC = () => {
   const [role, setRole] = useState('user');
   const nameInput = useRef(null);
   const passwordInput = useRef(null);
-  const roleSelect = useRef(null);
 
   const handleLogin = () => {
     login(dispatch, {
@@ -48,26 +47,32 @@ export const App: FC = () => {
   return (
     <Box
       sx={{
-        margin: '0 auto',
-        maxWidth: 300,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
       }}
     >
       <FormControl>
         {!token.role ? (
           <>
             <TextField
+              sx={{ marginBottom: '1rem' }}
               inputRef={nameInput}
               value={name}
               label="Name"
               onChange={handleChangeName}
             />
             <TextField
+              sx={{ marginBottom: '1rem' }}
               inputRef={passwordInput}
               type="password"
+              label="Password"
               value={password}
               onInput={handleChangePassword}
             />
             <Select
+              sx={{ marginBottom: '1rem' }}
               defaultValue={role}
               value={role}
               onChange={handleChangeRole}
